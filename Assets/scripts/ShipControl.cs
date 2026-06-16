@@ -85,5 +85,21 @@ public class ShipControl : MonoBehaviour {          // Hier steht die Klasse Shi
         }
         // <<< Hier gebe ich dem Objekt grenzen die es nicht überschreiten kann.
         transform.position = pos;   // Verändere den wert in der Position zur neuen Position.
-    } 
+    }
+
+    private void OnTriggerEnter(Collider collision) {
+        Bullet bullet = collision.GetComponent<Bullet>();
+        if (bullet != null) {
+            if (bullet.isEnemy) {
+                Destroy(gameObject);
+                Destroy(bullet.gameObject);
+            }
+        }
+
+        Destruct destructable = collision.GetComponent<Destruct>();
+        if (destructable != null) {
+            Destroy(gameObject);
+            Destroy(destructable.gameObject);
+        }
+    }
 }

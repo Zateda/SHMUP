@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour {
 
     public Vector3 velocity;
 
+    public bool isEnemy = false;
+
     public float speed = 7;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

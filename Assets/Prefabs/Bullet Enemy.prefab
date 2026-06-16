@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6434881671591927952}
   - component: {fileID: 9058159494462576838}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   direction: {x: 1, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
+  isEnemy: 1
   speed: 7
 --- !u!135 &9058159494462576838
 SphereCollider:
