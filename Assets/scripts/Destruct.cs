@@ -1,11 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 public class Destruct : MonoBehaviour {
     private bool canBeDestroyed = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    void Start() {
+        Level.instance.addEnemies();
     }
 
     // Update is called once per frame
@@ -29,5 +30,10 @@ public class Destruct : MonoBehaviour {
             }
 
         }
+    
+    }
+
+    private void OnDestroy() {
+        Level.instance.removeEnemies();
     }
 }
