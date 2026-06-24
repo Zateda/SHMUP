@@ -7,7 +7,7 @@ public class PowerUP : MonoBehaviour {      // Öffentliche Classe Power Up wird
 
     public bool speedUp;                    // Ein öffentlicher bool namens speedUp wird erstellt
 
-    public int PointValue = 10;
+    public int PointValue = 10;             // Zahlenwert Variable die auf 10 gesetzt ist
     
     // Dadurch das ich diese bools Öffentlich erstelle und das Script mit dem Gameobject PowerUP verbunden habe...
     // ... habe ich in Unity am PowerUP Obiect die mögliechkeit ein und aus zu schalten was das powerUp machen soll!
@@ -22,6 +22,8 @@ public class PowerUP : MonoBehaviour {      // Öffentliche Classe Power Up wird
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.x < -14) {                           // wird auf der x achse position -14 überschritten...
+            Destroy(gameObject);                                    // NUKE dieses gameObject!
+        }
     }
 }

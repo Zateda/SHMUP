@@ -3,8 +3,8 @@ using UnityEngine;
 public class MoveSinus : MonoBehaviour {
     private float sinCenter;                    // Erstelle sinCenter als kommazahl
 
-    public float amplitude = 2;                 // Erstelle amplitude als kommazahl
-    public float frequency = 2;                 // Erstelle freauency als kommazahl
+    public float amplitude = 2;                 // Erstelle amplitude als kommazahl, wie hoch die wellen sind
+    public float frequency = 2;                 // Erstelle freauency als kommazahl, wie eng die wellen sind
     public bool invert = false;                 // Erstelle invert als bool mit false als start
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {

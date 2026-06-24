@@ -4,7 +4,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour {
     public Vector3 direction = new Vector3(1,0,0);      // Erstelle direction mit dem wert 1 auf x
 
-    public Vector3 velocity;                            // Erstelle Vector als velocity
+    public Vector3 velocity;                            // Erstelle velocity, speichert bewegungsrichtung und geschwindigkeit
 
     public bool isEnemy = false;                        // Erstelle einen bool isEnemy als false
 
