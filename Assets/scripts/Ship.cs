@@ -24,7 +24,6 @@ public class ShipControl : MonoBehaviour {      // Hier steht die Klasse ShipCon
     
     private int hits = 3;                       // Ein Ganzzahlenwert der dem Schiff 3 trefferpunkte gibt.
     private Renderer[] shipRenderers;              // Ein Renderer für die Ship modelle
-    private float renderInterval = 0.1f;
     public GameObject model3Hp;                 // Plätze für GameObjecte ...
     public GameObject model2Hp;                 // ... um darzustellen ...
     public GameObject model1Hp;                 // ... wie das Schiff shaden bekommt.
@@ -32,6 +31,8 @@ public class ShipControl : MonoBehaviour {      // Hier steht die Klasse ShipCon
     private bool invincible = false;            // Ein bool namens invincible auf false
     private float invincibleTime = 1 ;          // eine Kommazahl auf 1
     private float invincibleTimer = 0 ;         // eine Kommazahl auf 0
+    private float blinkTimer = 0f;
+    private float renderInterval = 0.1f;
 
     private void Awake() {                      // Eine Funktion namens Awake
         initialPosition = transform.position;   // Speichert die jetzige Position als Startposition
@@ -74,19 +75,20 @@ public class ShipControl : MonoBehaviour {      // Hier steht die Klasse ShipCon
 
         if (invincible) {                                               // Wenn invincible true ist ...
             // TODO HIER WAS EINBAUEN DAS OBJECKT FLACKERN LÄST
-            if (invincibleTimer >= invincibleTime) {                    // Wenn Timer größer Time ist ...
-                invincibleTimer = 0;                                    // Timer auf 0
-                invincible = false;                                     // invincegle auf false
-                SetShipVisible(true); // Renderer auf true
-            } else {                                                    // ansonsten
-                invincibleTimer += Time.deltaTime;                      // Timer + Time
-                
-                if (invincibleTime >= renderInterval) {
-                    ToggleShipVisible();           // Renderer auf false fals er true war
-                    invincibleTimer = 0;
-                }
-                // TODO HIER WAS EINBAUEN DAS OBJECKT NICHT MEHR FLACKERN LÄST
+            invincibleTimer += Time.deltaTime;
+            blinkTimer += Time.deltaTime;
+            
+            if (blinkTimer >= renderInterval) {                    // Wenn Timer größer Time ist ...
+                ToggleShipVisible();           // Renderer auf false fals er true war
+                blinkTimer = 0f;
+            }  
+            if (invincibleTimer >= invincibleTime) {
+                invincibleTimer = 0f;
+                blinkTimer = 0f;
+                invincible = false;
+                SetShipVisible(true);
             }
+                // TODO HIER WAS EINBAUEN DAS OBJECKT NICHT MEHR FLACKERN LÄST
         }
     }
 
@@ -216,7 +218,7 @@ public class ShipControl : MonoBehaviour {      // Hier steht die Klasse ShipCon
             }
         }
         
-        Destruct destructable = collision.GetComponent<Destruct>(); // Zerstöre Zerstörbares wenn es mit etwas Zerstörbarem collidiert
+        Enemy destructable = collision.GetComponent<Enemy>(); // Zerstöre Zerstörbares wenn es mit etwas Zerstörbarem collidiert
         if (destructable != null) {                              // Wenn Zerstörbar nicht leer ist ...
             Hit(destructable.gameObject);                           // ... zerstöre das Object
         }

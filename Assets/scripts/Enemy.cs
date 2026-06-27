@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Destruct : MonoBehaviour {
+public class Enemy : MonoBehaviour {
     private bool canBeDestroyed = false;            // Ein schallter namens canBeDestroyed
 
     public int scoreValue = 1;                      // Ein ganzzahlenwert namens scoreValue mit 1
@@ -14,7 +14,8 @@ public class Destruct : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < -14) {                           // wird auf der x achse position -14 überschritten...
+        if (transform.position.x < -12) { // wird auf der x achse position -12 überschritten...
+            Level.instance.RemoveEnemies();
             Destroy(gameObject);                                    // NUKE dieses gameObject!
         }
         if (transform.position.x < 10.50f && !canBeDestroyed) {     // Wenn dieses kleiner ist als position 10,50 UND canBeDestroyed false ist

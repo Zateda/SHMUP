@@ -77,8 +77,10 @@ public class Level : MonoBehaviour {
     public void RemoveEnemies() {                                       // Führe die Funktion RemoveEnemies aus
         numEnemies--;                                                   // ziehe von numEnemies 1 ab
         if (numEnemies == 0) {                                          // wenn numEnemies gleich 0 ist ...
-            startNextLevel = true;                                      // schalte startNextLevel auf true
-
+            FindAnyObjectByType<WaveSpawner>().StartNextWave();                        // schalte startNextLevel auf true
         }
+    }
+    public void StartNextLevelTimer() {
+        startNextLevel = true;
     }
 }
